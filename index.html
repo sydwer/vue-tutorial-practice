@@ -2,7 +2,15 @@
     <h2>A list of words:</h2>
     <ul>
         <li v-for = 'word in words'>
-            {{ word.word }} - {{ word.language }}
+            <span>{{ word.word }} - {{ word.language }} </span>
+            
+            <div> 
+                <div>
+                    - likes: {{ word.likes}} 
+                    <button @click='word.likes += 1'> + </button>
+                    <button v-if='word.likes > 0' @click='word.likes -= 1'> - </button>
+                </div>
+            </div>
         </li>
     </ul>
 
@@ -12,6 +20,7 @@
 
 <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
 <script>
+
     function onlyUnique(value, index, self) { 
     return self.indexOf(value) === index;
     }
@@ -20,11 +29,11 @@
         el: '#app',
         data: {
             words:[
-                {word:'Cat', language: 'English'},
-                {word:'Apfel', language: 'German'},
-                {word:'House', language: 'English'},
-                {word:'Dog', language: 'English'},
-                {word:'Papel', language: 'Spanish'},
+                {word:'Cat', language: 'English', likes: 0, dislikes: 0},
+                {word:'Apfel', language: 'German', likes: 0, dislikes: 0},
+                {word:'House', language: 'English', likes: 0, dislikes: 0},
+                {word:'Dog', language: 'English', likes: 0, dislikes: 0},
+                {word:'Papel', language: 'Spanish', likes: 0, dislikes: 0},
             ] 
         },
         computed: {
@@ -52,3 +61,15 @@
     })
         
 </script>
+<style>
+    span{
+        font-weight: bold;
+    }
+    li{
+        display: flex;
+        flex-direction: column;
+    }
+    button{
+        width: 50px;
+    }
+</style>
