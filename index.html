@@ -2,7 +2,7 @@
     <h2>A list of words:</h2>
     <ul>
         <li v-for = 'word in words'>
-            {{ word }}
+            {{ word.word }} - {{ word.language }}
         </li>
     </ul>
 </div>
@@ -13,14 +13,20 @@
         el: '#app',
         data: {
             words:[
-                'Cat',
-                'Haus',
-                'Gerbil',
-                'Joke',
-                'Basura',
-                'Zapatos',
-                'Apfel',
+                {word:'Cat', language: 'English'},
+                {word:'Apfel', language: 'German'},
+                {word:'House', language: 'English'},
+                {word:'Dog', language: 'English'},
+                {word:'Papel', language: 'Spanish'},
             ] 
-        }
+        },
+        // created () {
+        //     fetch('http://api.myjson.com/bins/74163')
+        //     .then(response => response.json())
+        //     .then(json => {
+        //         this.products = json.products
+        //     })
+        // }
     })
+        
 </script>
