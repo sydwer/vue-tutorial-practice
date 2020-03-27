@@ -5,10 +5,17 @@
             {{ word.word }} - {{ word.language }}
         </li>
     </ul>
+
+    <h3>There are currently {{ totalWords }} in the list, </h3>
+    <h3> from {{ totalLanguages.length }} different languages</h3>
 </div>
 
 <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
 <script>
+    function onlyUnique(value, index, self) { 
+    return self.indexOf(value) === index;
+    }
+
     const app = new Vue({
         el: '#app',
         data: {
@@ -20,6 +27,21 @@
                 {word:'Papel', language: 'Spanish'},
             ] 
         },
+        computed: {
+            totalWords(){
+                return this.words.length
+            },
+
+            totalLanguages(){
+                const languages = [];
+                this.words.map(word =>{
+                    languages.push(word.language)
+                })
+                let unique = [...new Set(languages)]
+                console.log(languages)
+                return unique
+            }
+        }
         // created () {
         //     fetch('http://api.myjson.com/bins/74163')
         //     .then(response => response.json())
