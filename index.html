@@ -16,6 +16,7 @@
 
     <h3>There are currently {{ totalWords }} words in the list, </h3>
     <h3> from {{ totalLanguages.length }} different languages</h3>
+    <h3>And a total of {{ totalLikes }} for the entire dictionary.</h3>
 </div>
 
 <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
@@ -49,6 +50,13 @@
                 let unique = [...new Set(languages)]
                 console.log(languages)
                 return unique
+            },
+            totalLikes(){
+                const likesPerEntry = [];
+                words.map(word=>{
+                    likes.push(word.likes)
+                });
+                likesPerEntry.reduce((a, b) => a + b, 0);
             }
         }
         // created () {
